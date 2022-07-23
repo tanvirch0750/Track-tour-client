@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login } from '../../redux/features/authSlice';
 
 const initialState = {
   email: '',
@@ -9,9 +12,16 @@ const initialState = {
 const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
   const { email, password } = formValue;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => ({ ...state.auth }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (email && password) {
+      dispatch(login({ formValue, navigate, toast }));
+    }
   };
 
   const onInputChange = (e) => {
@@ -49,12 +59,20 @@ const Login = () => {
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-active btn-primary mt-4 w-full cursor-pointer"
-            >
-              Login
-            </button>
+            {loading ? (
+              <button class="btn loading btn-primary mt-4 w-full">
+                loading
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-active btn-primary mt-4 w-full cursor-pointer"
+              >
+                Login
+              </button>
+            )}
+
+            {error && <p className="mt-4 text-error">{error}</p>}
             <p className="mt-4">
               Don't have an accoutn?{' '}
               <Link to="/Register" className="text-primary">
