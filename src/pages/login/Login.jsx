@@ -75,7 +75,7 @@ const Login = () => {
             {error && <p className="mt-4 text-error">{error}</p>}
             <p className="mt-4">
               Don't have an accoutn?{' '}
-              <Link to="/Register" className="text-primary">
+              <Link to="/register" className="text-primary">
                 Signup
               </Link>
             </p>
