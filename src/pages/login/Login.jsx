@@ -14,7 +14,10 @@ const Login = () => {
     e.preventDefault();
   };
 
-  const onInputChange = () => {};
+  const onInputChange = (e) => {
+    let { name, value } = e.target;
+    setFormValue({ ...formValue, [name]: value });
+  };
 
   return (
     <div className="flex justify-center items-center h-full">
