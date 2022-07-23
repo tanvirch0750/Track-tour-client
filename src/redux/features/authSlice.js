@@ -36,6 +36,15 @@ const authSlice = createSlice({
     error: '',
     loading: false,
   },
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    setLogout: (state, action) => {
+      localStorage.clear();
+      state.user = null;
+    },
+  },
 
   extraReducers: {
     [login.pending]: (state, action) => {
@@ -64,5 +73,7 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const { setUser, setLogout } = authSlice.actions;
 
 export default authSlice.reducer;

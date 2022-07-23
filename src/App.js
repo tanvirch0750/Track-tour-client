@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -5,8 +7,16 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import { setUser } from './redux/features/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+
+  useEffect(() => {
+    dispatch(setUser(user));
+  }, []);
+
   return (
     <>
       <ToastContainer />
