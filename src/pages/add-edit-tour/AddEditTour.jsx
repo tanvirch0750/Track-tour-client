@@ -18,7 +18,9 @@ const AddEditTour = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { title, description, tags } = tourData;
-  const { error, userTours } = useSelector((state) => ({ ...state.tour }));
+  const { error, userTours, loading } = useSelector((state) => ({
+    ...state.tour,
+  }));
   const { user } = useSelector((state) => ({ ...state.auth }));
 
   useEffect(() => {
@@ -91,7 +93,6 @@ const AddEditTour = () => {
                 value={tags}
                 onAdd={(tag) => handleAddTag(tag)}
                 onDelete={(tag) => handleDeleteTag(tag)}
-                required
               />
             </div>
             <div className="mt-5">
@@ -103,12 +104,18 @@ const AddEditTour = () => {
                 }
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-active btn-primary mt-4 w-full cursor-pointer"
-            >
-              Add Tour
-            </button>
+            {loading ? (
+              <button class="btn loading btn-primary mt-4 w-full">
+                loading
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-active btn-primary mt-4 w-full cursor-pointer"
+              >
+                Add Tour
+              </button>
+            )}
           </form>
         </div>
       </div>
