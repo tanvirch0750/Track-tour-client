@@ -2,9 +2,9 @@ import ChipInput from 'material-ui-chip-input';
 import React, { useEffect, useState } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createTour } from '../../redux/features/tourSlice';
+import { createTour, updateTour } from '../../redux/features/tourSlice';
 
 const initialState = {
   title: '',
@@ -22,6 +22,14 @@ const AddEditTour = () => {
     ...state.tour,
   }));
   const { user } = useSelector((state) => ({ ...state.auth }));
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const singleTour = userTours.find((tour) => tour._id === id);
+      setTourData({ ...singleTour });
+    }
+  }, [id]);
 
   useEffect(() => {
     error && toast.error(error);
@@ -53,7 +61,12 @@ const AddEditTour = () => {
     }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
-      dispatch(createTour({ updatedTourData, navigate, toast }));
+
+      if (!id) {
+        dispatch(createTour({ updatedTourData, navigate, toast }));
+      } else {
+        dispatch(updateTour({ id, updatedTourData, toast, navigate }));
+      }
       handleClear();
     }
   };
@@ -62,7 +75,9 @@ const AddEditTour = () => {
     <div className="md:container md:mx-auto flex justify-center items-center h-full px-5">
       <div class="card bg-neutral w-[500px]">
         <div class="card-body">
-          <h2 class="card-title text-3xl text-center inline-block">Add Tour</h2>
+          <h2 class="card-title text-3xl text-center inline-block">
+            {id ? 'Update Tour' : 'Add Tour'}
+          </h2>
           <form className="mt-8" onSubmit={handleSubmit}>
             <div>
               <input
@@ -113,7 +128,7 @@ const AddEditTour = () => {
                 type="submit"
                 className="btn btn-active btn-primary mt-4 w-full cursor-pointer"
               >
-                Add Tour
+                {id ? 'Update Tour' : 'Add Tour'}
               </button>
             )}
           </form>
