@@ -100,7 +100,7 @@ const Register = () => {
               />
             </div>
             {loading ? (
-              <button class="btn loading btn-primary mt-4 w-full">
+              <button className="btn loading btn-primary mt-4 w-full">
                 loading
               </button>
             ) : (

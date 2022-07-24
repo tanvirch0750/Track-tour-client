@@ -41,6 +41,7 @@ const AddEditTour = () => {
   };
 
   const handleAddTag = (tag) => {
+    setTagErrMsg(null);
     setTourData({ ...tourData, tags: [...tourData.tags, tag] });
   };
   const handleDeleteTag = (deleteTag) => {
@@ -57,7 +58,7 @@ const AddEditTour = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!tags.length) {
-      setTagErrMsg('Please provide some tags');
+      return setTagErrMsg('Please provide some tags');
     }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
@@ -73,9 +74,9 @@ const AddEditTour = () => {
 
   return (
     <div className="md:container md:mx-auto flex justify-center items-center h-full px-5">
-      <div class="card bg-neutral w-[500px]">
-        <div class="card-body">
-          <h2 class="card-title text-3xl text-center inline-block">
+      <div className="card bg-neutral w-[500px]">
+        <div className="card-body">
+          <h2 className="card-title text-3xl text-center inline-block">
             {id ? 'Update Tour' : 'Add Tour'}
           </h2>
           <form className="mt-8" onSubmit={handleSubmit}>
@@ -109,6 +110,7 @@ const AddEditTour = () => {
                 onAdd={(tag) => handleAddTag(tag)}
                 onDelete={(tag) => handleDeleteTag(tag)}
               />
+              {tagErrMsg && <p className="text-error mt-1">{tagErrMsg}</p>}
             </div>
             <div className="mt-5">
               <FileBase
@@ -120,7 +122,7 @@ const AddEditTour = () => {
               />
             </div>
             {loading ? (
-              <button class="btn loading btn-primary mt-4 w-full">
+              <button className="btn loading btn-primary mt-4 w-full">
                 loading
               </button>
             ) : (

@@ -35,12 +35,12 @@ const UserTourCard = ({ tour, handleDelete }) => {
         <div className="card-actions">
           <button
             onClick={() => navigate(`/editTour/${_id}`)}
-            class="btn btn-sm bg-success text-neutral hover:text-white"
+            className="btn btn-sm bg-success text-neutral hover:text-white"
           >
             Edit
           </button>
           <button
-            class="btn btn-sm bg-error text-neutral hover:text-white"
+            className="btn btn-sm bg-error text-neutral hover:text-white"
             onClick={() => handleDelete(_id)}
           >
             Delete

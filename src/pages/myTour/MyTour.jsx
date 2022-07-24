@@ -31,7 +31,7 @@ const MyTour = () => {
     <>
       {userTours?.length === 0 && (
         <div className="flex justify-center items-center h-full">
-          <h2 class="text-5xl font-normal leading-normal mt-0 mb-2 text-secondary">
+          <h2 className="text-5xl font-normal leading-normal mt-0 mb-2 text-secondary">
             No tours found
           </h2>
         </div>
