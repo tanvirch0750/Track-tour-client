@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const UserTourCard = ({ tour }) => {
+const UserTourCard = ({ tour, handleDelete }) => {
   const navigate = useNavigate();
   const { title, imageFile, description, tags, _id, name } = tour;
 
@@ -39,7 +39,10 @@ const UserTourCard = ({ tour }) => {
           >
             Edit
           </button>
-          <button class="btn btn-sm bg-error text-neutral hover:text-white">
+          <button
+            class="btn btn-sm bg-error text-neutral hover:text-white"
+            onClick={() => handleDelete(_id)}
+          >
             Delete
           </button>
         </div>

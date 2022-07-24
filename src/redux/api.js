@@ -17,4 +17,5 @@ export const signUp = (formData) => API.post('/users/signup', formData);
 export const createTour = (tourData) => API.post('/tour', tourData);
 export const getTours = () => API.get('/tour');
 export const getTour = (id) => API.get(`/tour/${id}`);
+export const deleteTour = (id) => API.delete(`/tour/${id}`);
 export const getToursByUser = (id) => API.get(`/tour/userTours/${id}`);

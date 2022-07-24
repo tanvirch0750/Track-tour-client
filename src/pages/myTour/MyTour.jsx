@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
 import UserTourCard from '../../components/User-Tour-Card/UserTourCard';
-import { getToursByUser } from '../../redux/features/tourSlice';
+import { deleteTour, getToursByUser } from '../../redux/features/tourSlice';
 
 const MyTour = () => {
   const { user } = useSelector((state) => ({ ...state.auth }));
@@ -17,11 +18,10 @@ const MyTour = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const excerpt = (str) => {
-    if (str.length > 40) {
-      str = str.substring(0, 40) + ' ...';
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this tour ?')) {
+      dispatch(deleteTour({ id, toast }));
     }
-    return str;
   };
 
   if (loading) {
@@ -38,7 +38,11 @@ const MyTour = () => {
       )}
       <div className="md:container md:mx-auto px-5 pb-10 grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
         {userTours?.map((tour) => (
-          <UserTourCard key={tour._id} tour={tour} />
+          <UserTourCard
+            key={tour._id}
+            tour={tour}
+            handleDelete={handleDelete}
+          />
         ))}
       </div>
     </>
