@@ -9,6 +9,7 @@ import AddEditTour from './pages/add-edit-tour/AddEditTour';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import MyTour from './pages/myTour/MyTour';
+import NotFound from './pages/not-found/NotFound';
 import Register from './pages/register/Register';
 import SingleTour from './pages/single-tour/SingleTour';
 import { setUser } from './redux/features/authSlice';
@@ -54,6 +55,7 @@ function App() {
           ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Navbar>
     </>
