@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar/Navbar';
+import PrivateRoute from './components/Private-Route/PrivateRoute';
 import AddEditTour from './pages/add-edit-tour/AddEditTour';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
@@ -26,10 +27,31 @@ function App() {
       <Navbar>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/addTour" element={<AddEditTour />}></Route>
-          <Route path="/myTour" element={<MyTour />}></Route>
+          <Route
+            path="/addTour"
+            element={
+              <PrivateRoute>
+                <AddEditTour />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/myTour"
+            element={
+              <PrivateRoute>
+                <MyTour />
+              </PrivateRoute>
+            }
+          ></Route>
           <Route path="/tour/:id" element={<SingleTour />}></Route>
-          <Route path="/editTour/:id" element={<AddEditTour />}></Route>
+          <Route
+            path="/editTour/:id"
+            element={
+              <PrivateRoute>
+                <AddEditTour />
+              </PrivateRoute>
+            }
+          ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
         </Routes>

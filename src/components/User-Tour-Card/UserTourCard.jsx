@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserTourCard = ({ tour }) => {
+  const navigate = useNavigate();
   const { title, imageFile, description, tags, _id, name } = tour;
 
   const excerpt = (str) => {
@@ -32,7 +33,10 @@ const UserTourCard = ({ tour }) => {
           </Link>
         </p>
         <div className="card-actions">
-          <button class="btn btn-sm bg-success text-neutral hover:text-white">
+          <button
+            onClick={() => navigate(`/editTour/${_id}`)}
+            class="btn btn-sm bg-success text-neutral hover:text-white"
+          >
             Edit
           </button>
           <button class="btn btn-sm bg-error text-neutral hover:text-white">
