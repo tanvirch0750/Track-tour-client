@@ -36,24 +36,30 @@ const Navbar = ({ children }) => {
           </div>
           <div className="flex-1 px-2 mx-2">
             <Link to="/">
-              <h1 className="font-bold text-2xl text-primary">
-                Track <span className="text-secondary">Tour</span>
+              <h1 className="font-bold text-3xl text-primary">
+                Track<span className="text-secondary">Tour</span>
               </h1>
             </Link>
           </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="hover:rounded-lg">
+                  Home
+                </Link>
               </li>
               {user?.result?._id && (
                 <li>
-                  <Link to="/addTour">Add Tour</Link>
+                  <Link to="/addTour" className="hover:rounded-lg">
+                    Add Tour
+                  </Link>
                 </li>
               )}
               {user?.result?._id && (
                 <li>
-                  <Link to="/myTour">My Tour</Link>
+                  <Link to="/myTour" className="hover:rounded-lg">
+                    My Tour
+                  </Link>
                 </li>
               )}
 
