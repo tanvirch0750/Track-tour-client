@@ -1,7 +1,10 @@
 import ChipInput from 'material-ui-chip-input';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FileBase from 'react-file-base64';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { createTour } from '../../redux/features/tourSlice';
 
 const initialState = {
   title: '',
@@ -11,10 +14,16 @@ const initialState = {
 
 const AddEditTour = () => {
   const [tourData, setTourData] = useState(initialState);
+  const [tagErrMsg, setTagErrMsg] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { title, description, tags } = tourData;
+  const { error, userTours } = useSelector((state) => ({ ...state.tour }));
+  const { user } = useSelector((state) => ({ ...state.auth }));
 
-  console.log(tourData);
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +46,14 @@ const AddEditTour = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    handleClear();
+    if (!tags.length) {
+      setTagErrMsg('Please provide some tags');
+    }
+    if (title && description && tags) {
+      const updatedTourData = { ...tourData, name: user?.result?.name };
+      dispatch(createTour({ updatedTourData, navigate, toast }));
+      handleClear();
+    }
   };
 
   return (
