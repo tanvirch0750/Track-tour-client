@@ -8,6 +8,7 @@ import AddEditTour from './pages/add-edit-tour/AddEditTour';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import SingleTour from './pages/single-tour/SingleTour';
 import { setUser } from './redux/features/authSlice';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/addTour" element={<AddEditTour />}></Route>
+          <Route path="/tour/:id" element={<SingleTour />}></Route>
           <Route path="/editTour/:id" element={<AddEditTour />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
