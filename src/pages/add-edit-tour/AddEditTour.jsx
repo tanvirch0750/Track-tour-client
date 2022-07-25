@@ -73,7 +73,7 @@ const AddEditTour = () => {
   };
 
   return (
-    <div className="md:container md:mx-auto flex justify-center items-center h-full px-5">
+    <div className="md:container md:mx-auto flex justify-center items-center h-full px-5 py-24">
       <div className="card bg-neutral w-[500px]">
         <div className="card-body">
           <h2 className="card-title text-3xl text-center inline-block">

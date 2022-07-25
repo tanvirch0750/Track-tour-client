@@ -35,7 +35,10 @@ const MyTour = () => {
           </h2>
         </div>
       )}
-      <div className="md:container md:mx-auto px-5 pb-10 grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+      <h2 className="text-[36px] text-center uppercase font-bold mt-14">
+        My Tours
+      </h2>
+      <div className="md:container md:mx-auto px-5 pb-[96px] grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
         {userTours?.map((tour) => (
           <UserTourCard
             key={tour._id}

@@ -43,3 +43,8 @@ code {
   background: linear-gradient(rgba(38, 43, 54, 0.8), rgba(38, 43, 54, 0.8)),
     url('./assets/hero.jpg');
 }
+
+.home-cta {
+  background: linear-gradient(rgba(38, 43, 54, 0.8), rgba(38, 43, 54, 0.8)),
+    url('./assets/hero.jpg');
+}

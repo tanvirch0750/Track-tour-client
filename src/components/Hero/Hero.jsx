@@ -11,7 +11,7 @@ const Hero = () => {
             <span className="text-primary">EXPLORE THE WORLD</span>
           </h1>
 
-          <button className="btn btn-secondary btn-lg px-[60px]">
+          <button className="btn btn-secondary btn-lg px-[60px] mt-8">
             ALL TOURS
           </button>
         </div>

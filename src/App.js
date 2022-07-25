@@ -12,6 +12,7 @@ import MyTour from './pages/myTour/MyTour';
 import NotFound from './pages/not-found/NotFound';
 import Register from './pages/register/Register';
 import SingleTour from './pages/single-tour/SingleTour';
+import Tours from './pages/tours/Tours';
 import { setUser } from './redux/features/authSlice';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Navbar>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/tours" element={<Tours />}></Route>
           <Route
             path="/addTour"
             element={

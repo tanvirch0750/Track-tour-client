@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Hero from '../../components/Hero/Hero';
 import Spinner from '../../components/Spinner/Spinner';
 import TourCard from '../../components/TourCard/TourCard';
 import { getTours } from '../../redux/features/tourSlice';
 
-const Home = () => {
+const Tours = () => {
   const dispatch = useDispatch();
 
   const { tours, loading } = useSelector((state) => ({
@@ -18,7 +17,6 @@ const Home = () => {
 
   return (
     <>
-      <Hero />
       {tours?.length === 0 && (
         <div className="flex justify-center items-center h-full">
           <h2 className="text-5xl font-normal leading-normal mt-0 mb-2 text-secondary">
@@ -26,34 +24,22 @@ const Home = () => {
           </h2>
         </div>
       )}
-      <div className="md:container md:mx-auto px-5 py-[96px]">
+      <div className="md:container md:mx-auto px-5 py-[50px]">
         <h2 className="text-[36px] text-center uppercase font-bold">
-          Latest Tours
+          All Tours
         </h2>
         {loading ? (
           <Spinner />
         ) : (
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-            {tours?.slice(-6)?.map((tour) => (
+          <div className="grid grid-cols-1 gap-8 mt-8 mb-16 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+            {tours?.map((tour) => (
               <TourCard key={tour._id} tour={tour} />
             ))}
           </div>
         )}
       </div>
-      <section className="bg-neutral mt-[72px] py-16 home-cta">
-        <div className="px-8 py-20 lg:flex lg:justify-center container mx-auto">
-          <div className="">
-            <h3 className="text-[36px] font-bold text-center text-white leading-[55px]">
-              “The biggest adventure you can take is to <br /> live the life of
-              your dreams”
-            </h3>
-
-            <div className="items-center justify-center mt-4 lg:flex lg:gap-2"></div>
-          </div>
-        </div>
-      </section>
     </>
   );
 };
 
-export default Home;
+export default Tours;

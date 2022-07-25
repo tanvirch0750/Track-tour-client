@@ -15,7 +15,10 @@ const Navbar = ({ children }) => {
   };
 
   const paddingCss =
-    location.pathname === '/' || location.pathname === '/myTour'
+    location.pathname === '/' ||
+    location.pathname === '/addTour' ||
+    location.pathname === '/myTour' ||
+    location.pathname === '/tours'
       ? 'py-10'
       : 'py-5';
 
@@ -25,23 +28,6 @@ const Navbar = ({ children }) => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           <div className={`w-full navbar bg-base-200 ${paddingCss}`}>
-            <div className="flex-none lg:hidden">
-              <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-6 h-6 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
-              </label>
-            </div>
             <div className="flex-1 px-2 mx-2">
               <Link to="/">
                 <h1 className="font-bold text-3xl text-primary">
@@ -54,6 +40,11 @@ const Navbar = ({ children }) => {
                 <li>
                   <Link to="/" className="hover:rounded-lg">
                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tours" className="hover:rounded-lg">
+                    Tours
                   </Link>
                 </li>
                 {user?.result?._id && (
@@ -93,6 +84,23 @@ const Navbar = ({ children }) => {
                 )}
               </ul>
             </div>
+            <div className="flex-none lg:hidden">
+              <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-6 h-6 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
           </div>
           {children}
           <Footer />
@@ -102,6 +110,11 @@ const Navbar = ({ children }) => {
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/tours" className="hover:rounded-lg">
+                Tours
+              </Link>
             </li>
             {user?.result?._id && (
               <li>
@@ -116,7 +129,9 @@ const Navbar = ({ children }) => {
 
             {user?.result?._id && (
               <li className="bg-primary rounded-lg mt-6">
-                <span>{user?.result?.name}</span>
+                <span className="text-center inline-block">
+                  {user?.result?.name}
+                </span>
               </li>
             )}
 
@@ -125,7 +140,9 @@ const Navbar = ({ children }) => {
                 className="bg-secondary rounded-lg mt-6"
                 onClick={handleLogout}
               >
-                <Link to="/login">Logout</Link>
+                <Link to="/login" className="text-center inline-block">
+                  Logout
+                </Link>
               </li>
             ) : (
               <li>
