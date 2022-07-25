@@ -15,7 +15,6 @@ const MyTour = () => {
     if (userId) {
       dispatch(getToursByUser(userId));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const handleDelete = (id) => {

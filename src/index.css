@@ -34,3 +34,12 @@ code {
   border-radius: var(--rounded-btn, 0.5rem) !important;
   font-size: 0.875rem !important;
 }
+
+.custom-hero {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  -moz-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  -o-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  background: linear-gradient(rgba(38, 43, 54, 0.8), rgba(38, 43, 54, 0.8)),
+    url('./assets/hero.jpg');
+}

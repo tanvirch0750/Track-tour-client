@@ -1,6 +1,5 @@
 import ChipInput from 'material-ui-chip-input';
 import React, { useEffect, useState } from 'react';
-import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,6 +8,7 @@ import { createTour, updateTour } from '../../redux/features/tourSlice';
 const initialState = {
   title: '',
   description: '',
+  imageFile: '',
   tags: [],
 };
 
@@ -17,7 +17,7 @@ const AddEditTour = () => {
   const [tagErrMsg, setTagErrMsg] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { title, description, tags } = tourData;
+  const { title, description, tags, imageFile } = tourData;
   const { error, userTours, loading } = useSelector((state) => ({
     ...state.tour,
   }));
@@ -112,7 +112,18 @@ const AddEditTour = () => {
               />
               {tagErrMsg && <p className="text-error mt-1">{tagErrMsg}</p>}
             </div>
-            <div className="mt-5">
+            <div className="mt-4">
+              <input
+                type="text"
+                placeholder="Tour Image Link"
+                className="input w-full"
+                value={imageFile}
+                name="imageFile"
+                onChange={onInputChange}
+                required
+              />
+            </div>
+            {/* <div className="mt-5">
               <FileBase
                 type="file"
                 multiple={false}
@@ -120,7 +131,11 @@ const AddEditTour = () => {
                   setTourData({ ...tourData, imageFile: base64 })
                 }
               />
-            </div>
+              <div className="mt-1 text-primary text-sm">
+                Maximum 70kb image file
+              </div>
+            </div> */}
+
             {loading ? (
               <button className="btn loading btn-primary mt-4 w-full">
                 loading

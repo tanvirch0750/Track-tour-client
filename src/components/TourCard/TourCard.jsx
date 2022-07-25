@@ -28,14 +28,14 @@ const TourCard = ({ tour }) => {
 
         <p className="text-sm mb-4">
           {excerpt(description)}{' '}
-          <Link className="text-primary" to={`/tour/${_id}`}>
+          <Link className="text-secondary" to={`/tour/${_id}`}>
             Read More
           </Link>
         </p>
         <div className="card-actions">
           <div>
             Creator:{' '}
-            <span className="inline-block bg-primary p-1 rounded-lg ml-2">
+            <span className="inline-block bg-primary px-1 rounded-lg ml-2">
               {name}
             </span>
           </div>
