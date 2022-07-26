@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://track-tour.herokuapp.com' });
-//const API = axios.create({ baseURL: 'http://localhost:5000' });
+//const API = axios.create({ baseURL: 'https://track-tour.herokuapp.com' });
+const API = axios.create({ baseURL: 'http://localhost:5000' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
@@ -21,4 +21,7 @@ export const getTour = (id) => API.get(`/tour/${id}`);
 export const deleteTour = (id) => API.delete(`/tour/${id}`);
 export const updateTour = (updatedTourData, id) =>
   API.patch(`/tour/${id}`, updatedTourData);
+
 export const getToursByUser = (id) => API.get(`/tour/userTours/${id}`);
+export const getToursBySearch = (searchQuery) =>
+  API.get(`/tour/search?searchQuery=${searchQuery}`);

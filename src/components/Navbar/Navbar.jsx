@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { setLogout } from '../../redux/features/authSlice';
+import { searchTours } from '../../redux/features/tourSlice';
 import Footer from '../Footer/Footer';
 
 const Navbar = ({ children }) => {
+  const [search, setSearch] = useState('');
   const { user } = useSelector((state) => ({ ...state.auth }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,26 +16,58 @@ const Navbar = ({ children }) => {
     dispatch(setLogout());
   };
 
-  const paddingCss =
-    location.pathname === '/' ||
-    location.pathname === '/addTour' ||
-    location.pathname === '/myTour' ||
-    location.pathname === '/tours'
-      ? 'py-10'
-      : 'py-5';
+  console.log(search);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (search) {
+      dispatch(searchTours(search));
+      navigate(`/tours/search?searchQuery=${search}`);
+      setSearch('');
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <>
       <div className="drawer drawer-end">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
-          <div className={`w-full navbar bg-base-200 ${paddingCss}`}>
+          <div className={`w-full navbar bg-base-200 py-12`}>
             <div className="flex-1 px-2 mx-2">
               <Link to="/">
                 <h1 className="font-bold text-3xl text-primary">
                   Track<span className="text-secondary">Tour</span>
                 </h1>
               </Link>
+              <form className="form-control ml-8" onSubmit={handleSubmit}>
+                <div className="input-group justify-center">
+                  <input
+                    type="text"
+                    placeholder="Search Tours"
+                    className="input input-bordered"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <button className="btn btn-square" type="submit">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">

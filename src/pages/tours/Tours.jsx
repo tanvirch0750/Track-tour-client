@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import TourCard from '../../components/TourCard/TourCard';
 import { getTours } from '../../redux/features/tourSlice';
 
 const Tours = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { tours, loading } = useSelector((state) => ({
     ...state.tour,
@@ -26,8 +28,9 @@ const Tours = () => {
       )}
       <div className="md:container md:mx-auto px-5 py-[50px]">
         <h2 className="text-[36px] text-center uppercase font-bold">
-          All Tours
+          Tours - Explore the world
         </h2>
+
         {loading ? (
           <Spinner />
         ) : (
