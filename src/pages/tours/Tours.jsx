@@ -19,13 +19,6 @@ const Tours = () => {
 
   return (
     <>
-      {tours?.length === 0 && (
-        <div className="flex justify-center items-center h-full">
-          <h2 className="text-5xl font-normal leading-normal mt-0 mb-2 text-secondary">
-            No tours found
-          </h2>
-        </div>
-      )}
       <div className="md:container md:mx-auto px-5 py-[50px]">
         <h2 className="text-[36px] text-center uppercase font-bold">
           Tours - Explore the world

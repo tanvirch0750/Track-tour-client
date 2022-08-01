@@ -41,36 +41,36 @@ const Navbar = ({ children }) => {
                   Track<span className="text-secondary">Tour</span>
                 </h1>
               </Link>
-              <form className="form-control ml-8" onSubmit={handleSubmit}>
-                <div className="input-group justify-center">
-                  <input
-                    type="text"
-                    placeholder="Search Tours"
-                    className="input input-bordered"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                  <button className="btn btn-square" type="submit">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </form>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
+                <form className="form-control mr-8" onSubmit={handleSubmit}>
+                  <div className="input-group justify-center">
+                    <input
+                      type="text"
+                      placeholder="Search Tours"
+                      className="input input-bordered"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button className="btn btn-square" type="submit">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
                 <li>
                   <Link to="/" className="hover:rounded-lg">
                     Home
@@ -141,7 +141,35 @@ const Navbar = ({ children }) => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
+
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
+            <form className="form-control" onSubmit={handleSubmit}>
+              <div className="input-group justify-center">
+                <input
+                  type="text"
+                  placeholder="Search Tours"
+                  className="input input-bordered"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button className="btn btn-square" type="submit">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
             <li>
               <Link to="/">Home</Link>
             </li>

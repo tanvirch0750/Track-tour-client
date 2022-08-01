@@ -123,18 +123,6 @@ const AddEditTour = () => {
                 required
               />
             </div>
-            {/* <div className="mt-5">
-              <FileBase
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) =>
-                  setTourData({ ...tourData, imageFile: base64 })
-                }
-              />
-              <div className="mt-1 text-primary text-sm">
-                Maximum 70kb image file
-              </div>
-            </div> */}
 
             {loading ? (
               <button className="btn loading btn-primary mt-4 w-full">

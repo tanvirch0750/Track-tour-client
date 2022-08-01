@@ -37,7 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center h-full py-24">
       <div className="card w-96 bg-base-200 shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-center inline-block text-2xl">
